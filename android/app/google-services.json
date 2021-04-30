@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "229147484778",
+    "firebase_url": "https://expenses-control-2ffd2.firebaseio.com",
+    "project_id": "expenses-control-2ffd2",
+    "storage_bucket": "expenses-control-2ffd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229147484778:android:8891d88e003c0d310d2013",
+        "android_client_info": {
+          "package_name": "com.luisbarqueira.expenses_control"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229147484778-laa7v4nj1m5povsb52051d5d0k03188a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6IThk7gmSTYml4jNzWtsgllYt2z51cf8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229147484778-laa7v4nj1m5povsb52051d5d0k03188a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
