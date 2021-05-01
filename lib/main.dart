@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:expenses_control/pages/home_page.dart';
 import 'package:expenses_control/pages/login_page.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -99,10 +98,7 @@ class MyApp extends StatelessWidget {
                               }
                             } else {
                               return Center(
-                                child: SpinKitDoubleBounce(
-                                  color: Colors.white,
-                                  size: 100.0,
-                                ),
+                                child: CircularProgressIndicator(),
                               );
                             }
                           },
@@ -112,10 +108,7 @@ class MyApp extends StatelessWidget {
                       }
                     } else {
                       return Center(
-                        child: SpinKitDoubleBounce(
-                          color: Colors.white,
-                          size: 100.0,
-                        ),
+                        child: CircularProgressIndicator(),
                       );
                     }
                   },

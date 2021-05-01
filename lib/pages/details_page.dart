@@ -41,7 +41,7 @@ class _DetailsPageState extends State<DetailsPage> {
         return Scaffold(
           // FIXME: the colors of the appbar are wrong
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
+            //           backgroundColor: Colors.transparent,
             centerTitle: true,
             elevation: 0.0,
             title: FittedBox(
@@ -50,12 +50,17 @@ class _DetailsPageState extends State<DetailsPage> {
                   children: [
                     TextSpan(
                         //FIXME The color
-                        style: TextStyle(color: Colors.lightBlue),
+                        //         style: TextStyle(color: Colors.lightBlue),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0),
                         text: '${widget.params.categoryName} expenses on '),
                     convertMonthToText(
                       widget.params.month,
                       TextStyle(
-                          color: Colors.lightBlue, fontWeight: FontWeight.bold),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.0),
                     ),
                   ],
                 ),

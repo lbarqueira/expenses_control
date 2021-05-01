@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
-            backgroundColor: Theme.of(context).accentColor.withOpacity(1.0),
+            // backgroundColor: Theme.of(context).colorScheme.secondary,
             child: Icon(Icons.add),
             onPressed: () {
               //Navigator.of(context).pushNamed('/add');
@@ -113,8 +113,18 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Column(
         children: [
-          _selector(),
-          _selector2(),
+          Container(
+            color: Theme.of(context).colorScheme.background,
+            child: Column(
+              children: [
+                _selector(),
+                _selector2(),
+                SizedBox(
+                  height: 16.0,
+                ),
+              ],
+            ),
+          ),
           SizedBox(
             height: 12.0,
           ),
@@ -171,12 +181,15 @@ class _HomePageState extends State<HomePage> {
     final selected = TextStyle(
       fontSize: 20.0,
       fontWeight: FontWeight.bold,
-      color: Theme.of(context).accentColor.withOpacity(0.8), //! accentColor
+      color: Theme.of(context).colorScheme.primary.withOpacity(0.8),
     );
     final unselected = TextStyle(
       fontSize: 20.0,
       fontWeight: FontWeight.normal,
-      color: Theme.of(context).accentColor.withOpacity(0.3), //! accentColor
+      color: Theme.of(context)
+          .colorScheme
+          .primary
+          .withOpacity(0.3), //! accentColor
     );
     if (position == currentPage) {
       _alignment = Alignment.center;
@@ -197,7 +210,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _selector() {
     return SizedBox.fromSize(
-      size: Size.fromHeight(70.0),
+      size: Size.fromHeight(65.0),
       child: PageView(
         onPageChanged: (newPage) {
           setState(
@@ -231,7 +244,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _selector2() {
     return SizedBox.fromSize(
-      size: Size.fromHeight(12.0),
+      size: Size.fromHeight(8.0),
       child: Container(
         //margin: const EdgeInsets.symmetric(vertical: 24),
         child: Row(
@@ -247,13 +260,13 @@ class _HomePageState extends State<HomePage> {
     return AnimatedContainer(
       curve: Curves.linear,
       duration: Duration(milliseconds: 250),
-      margin: EdgeInsets.only(right: 10),
+      margin: EdgeInsets.only(right: 8),
       height: currentPage == index ? 8 : 8,
       width: currentPage == index ? 8 : 8,
       decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).accentColor),
+        border: Border.all(color: Theme.of(context).colorScheme.primary),
         color: currentPage == index
-            ? Theme.of(context).accentColor
+            ? Theme.of(context).colorScheme.primary
             : Colors.transparent,
         borderRadius: currentPage == index
             ? BorderRadius.circular(4)
