@@ -90,7 +90,14 @@ class ExpensesRepository {
         .doc(documentId)
         .get()
         .then(
-          (snapshot) => Expense.fromJson(snapshot.data()),
-        );
+      (DocumentSnapshot snapshot) {
+        if (snapshot.exists) {
+          return Expense.fromJson(snapshot.data());
+        } else {
+          print('Document does not exist on the database');
+          return null;
+        }
+      },
+    );
   }
 }

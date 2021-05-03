@@ -162,7 +162,9 @@ class Graph extends StatelessWidget {
 //!      var perCategory =
 //!          categories.keys.map((name) => categories[name] / total).toList();
       List<CostsData> perCategory = [];
-      categories.forEach((k, v) => perCategory.add(CostsData(k, v)));
+      categories.forEach(
+        (k, v) => perCategory.add(CostsData(k, num.parse(v.toStringAsFixed(2)).toDouble())),
+      );
       return SizedBox(
         width: width * 0.95, //! nes
         height: height * 0.33, //! estava 250
@@ -295,11 +297,14 @@ class ListTileOfExpenses extends StatelessWidget {
         name,
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
       ),
-      subtitle: Text(
-        "${percent.toStringAsFixed(2)}% of expenses",
-        style: TextStyle(
-          fontSize: 14.0,
-          color: Colors.blueGrey,
+      subtitle: Padding(
+        padding: const EdgeInsets.only(top: 2.0),
+        child: Text(
+          "${percent.toStringAsFixed(2)}% of expenses",
+          style: TextStyle(
+            fontSize: 14.0,
+            color: Colors.blueGrey,
+          ),
         ),
       ),
       trailing: Container(
@@ -310,7 +315,7 @@ class ListTileOfExpenses extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            "\€$value",
+            "\€${value.toStringAsFixed(2)}",
             style: TextStyle(
               color: Colors.blueAccent,
               fontWeight: FontWeight.w500,

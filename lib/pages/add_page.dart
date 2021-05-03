@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import '../category_selection_widget.dart';
 import 'package:expenses_control/services/expenses_repository.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../providers/login_state.dart';
 
@@ -65,9 +64,10 @@ class _AddPageState extends State<AddPage> {
     if (_value == null) {
       return Scaffold(
         body: Center(
-          child: SpinKitDoubleBounce(
-            color: Colors.white,
-            size: 100.0,
+          child: SizedBox(
+            child: CircularProgressIndicator(),
+            height: 50.0,
+            width: 50.0,
           ),
         ),
       );
@@ -79,13 +79,13 @@ class _AddPageState extends State<AddPage> {
         elevation: 0.0,
         title: (widget.documentId == null)
             ? Text(
-                'Add Category $dateStr',
+                'Select Category',
                 style: TextStyle(
                   color: Colors.grey,
                 ),
               )
             : Text(
-                'Edit Category = $_category',
+                'Selected Category: $_category',
                 style: TextStyle(
                   color: Colors.grey,
                 ),
@@ -97,6 +97,7 @@ class _AddPageState extends State<AddPage> {
               icon: Icon(
                 FontAwesomeIcons.calendarAlt,
                 // TODO: color of the icons
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
               ),
               onPressed: () {
                 //  if (widget.month == DateTime.now().month) {
@@ -261,7 +262,10 @@ class _AddPageState extends State<AddPage> {
                 var user =
                     Provider.of<LoginState>(context, listen: false).currentUser;
                 if (_value > 0 && _category != null && date != null) {
-                  expensesRepository.add(_category, _value / 100.0, date,
+                  expensesRepository.add(
+                      _category,
+                      (_value / 100).toDouble(),
+                      date,
                       user.uid); //! substitute DateTime.now() by date if we are adding expense for the first time
                   print('category submitted value = $_category');
                   print(
@@ -273,7 +277,7 @@ class _AddPageState extends State<AddPage> {
                     SnackBar(
                       backgroundColor: Colors.black,
                       content: Text(
-                        "Select a value and a category and a date",
+                        "Select a value, category and date",
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -302,7 +306,7 @@ class _AddPageState extends State<AddPage> {
                     Provider.of<LoginState>(context, listen: false).currentUser;
                 if (_value > 0 && _category != null) {
                   expensesRepository.updateExpense(_category,
-                      (_value / 100.0).toDouble(), user.uid, widget.documentId);
+                      (_value / 100).toDouble(), user.uid, widget.documentId);
                   print('category submitted value = $_category');
                   Navigator.of(context).pop();
                 } else {
@@ -342,7 +346,11 @@ class _AddPageState extends State<AddPage> {
           'Medical': FontAwesomeIcons.clinicMedical,
           'Learning': FontAwesomeIcons.graduationCap,
         },
-        onValueChanged: (newCategory) => _category = newCategory,
+        onValueChanged: (newCategory) {
+          setState(() {
+            _category = newCategory;
+          });
+        },
       ),
     );
   }

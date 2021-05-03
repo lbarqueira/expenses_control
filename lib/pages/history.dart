@@ -122,7 +122,8 @@ class _YearWidgetState extends State<YearWidget> {
     print('Total:${widget.total}');
     print('List<double> perMonth: ${widget.perMonth}');
     List<CostsData> perCategory = [];
-    widget.categories.forEach((k, v) => perCategory.add(CostsData(k, v)));
+    widget.categories.forEach((k, v) => perCategory
+        .add(CostsData(k, num.parse(v.toStringAsFixed(2)).toDouble())));
     return Expanded(
       child: Column(
         children: [

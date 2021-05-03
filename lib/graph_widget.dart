@@ -55,7 +55,7 @@ class _PieGraphWidgetState extends State<PieGraphWidget> {
         // Add legend. ("Datum" means the "X-axis" of each data point.)
         charts.DatumLegend(
           // outsideJustification: charts.OutsideJustification.middleDrawArea,
-          cellPadding: EdgeInsets.only(right: 3.0, bottom: 3.0),
+          cellPadding: EdgeInsets.only(right: 8.0, bottom: 3.0),
           // showMeasures: true,
           horizontalFirst: true,
           desiredMaxColumns: 4,
@@ -238,7 +238,8 @@ class _LinesGraphWidgetYearState extends State<LinesGraphWidgetYear> {
     List<charts.Series<double, num>> series = [
       charts.Series<double, int>(
         id: 'Gasto',
-        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        colorFn: (_, __) => charts.ColorUtil.fromDartColor(
+            Theme.of(context).accentColor.withOpacity(0.8)),
         domainFn: (value, index) => index,
         measureFn: (value, _) => value,
         data: widget.data,

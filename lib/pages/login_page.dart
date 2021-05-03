@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Container(),
           ),
           Text(
-            'Expenses - Luis Barqueira',
+            'Expense Control',
             style: TextStyle(
               fontSize: width * 0.06,
             ),

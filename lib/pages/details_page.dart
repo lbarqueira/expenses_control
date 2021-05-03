@@ -39,9 +39,7 @@ class _DetailsPageState extends State<DetailsPage> {
             userUid: user.uid);
 
         return Scaffold(
-          // FIXME: the colors of the appbar are wrong
           appBar: AppBar(
-            //           backgroundColor: Colors.transparent,
             centerTitle: true,
             elevation: 0.0,
             title: FittedBox(
@@ -49,11 +47,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                        //FIXME The color
-                        //         style: TextStyle(color: Colors.lightBlue),
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0),
+                        style: TextStyle(color: Colors.white, fontSize: 18.0),
                         text: '${widget.params.categoryName} expenses on '),
                     convertMonthToText(
                       widget.params.month,
@@ -75,19 +69,42 @@ class _DetailsPageState extends State<DetailsPage> {
                   itemBuilder: (BuildContext context, int index) {
                     var document = data.data.docs[index];
                     print('query by category $document');
-
                     return DayExpenseListTile(document: document);
                   },
                   itemCount: data.data.docs.length,
                 );
               }
-              //! only to get the link to automate Firestore indexes creation
+
               if (data.hasError) {
-                print('ERROR = ${data.error}');
+                //TODO: QuerySnapshot handling error
+                print(
+                    'ERROR = ${data.error}'); //! only to get the link to automate Firestore indexes creation
+                showDialog<void>(
+                  context: context,
+                  barrierDismissible: false, // user must tap button!
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Error'),
+                      content: Text('${data.error}'),
+                      actions: [
+                        TextButton(
+                          child: Text('Cancel'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
               }
 
               return Center(
-                child: CircularProgressIndicator(),
+                child: SizedBox(
+                  child: CircularProgressIndicator(),
+                  height: 50.0,
+                  width: 50.0,
+                ),
               );
             },
           ),
@@ -208,7 +225,7 @@ class DayExpenseListTile extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            "\€${document['value']}",
+            "\€${document['value'].toStringAsFixed(2)}",
             style: TextStyle(
               color: Colors.blueAccent,
               fontWeight: FontWeight.w500,

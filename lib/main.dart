@@ -25,11 +25,19 @@ void main() async {
   await SharedPreferences.getInstance().then(
     (prefs) {
       var isDarkTheme = prefs.getBool('darkTheme') ?? true;
+      var isFistSeen = prefs.getBool('seen') ?? true;
       print('isDarkTheme = $isDarkTheme');
-      print('prefs = $prefs');
+      print('isFistSeen = $isFistSeen');
       return runApp(
-        ChangeNotifierProvider<ThemeNotifier>(
-          create: (_) => ThemeNotifier(isDarkTheme, prefs), //! prefs
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider<ThemeNotifier>(
+              create: (_) => ThemeNotifier(isDarkTheme, prefs),
+            ),
+            ChangeNotifierProvider<OnboardingNotifier>(
+              create: (_) => OnboardingNotifier(isFistSeen, prefs),
+            ),
+          ],
           child: MyApp(),
         ),
       );
@@ -44,9 +52,6 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<LoginState>(
           create: (_) => LoginState(),
-        ),
-        ChangeNotifierProvider<OnboardingNotifier>(
-          create: (_) => OnboardingNotifier(),
         ),
         ChangeNotifierProvider(
           create: (_) => NotificationService(),
@@ -98,7 +103,11 @@ class MyApp extends StatelessWidget {
                               }
                             } else {
                               return Center(
-                                child: CircularProgressIndicator(),
+                                child: SizedBox(
+                                  child: CircularProgressIndicator(),
+                                  height: 50.0,
+                                  width: 50.0,
+                                ),
                               );
                             }
                           },
@@ -108,7 +117,11 @@ class MyApp extends StatelessWidget {
                       }
                     } else {
                       return Center(
-                        child: CircularProgressIndicator(),
+                        child: SizedBox(
+                          child: CircularProgressIndicator(),
+                          height: 50.0,
+                          width: 50.0,
+                        ),
                       );
                     }
                   },

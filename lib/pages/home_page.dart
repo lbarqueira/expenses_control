@@ -114,7 +114,16 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           Container(
-            color: Theme.of(context).colorScheme.background,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface.withOpacity(0.9),
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(0, 3),
+                  color: Theme.of(context).colorScheme.surface.withOpacity(0.2),
+                ),
+              ],
+            ),
+            //color: Theme.of(context).colorScheme.surface.withOpacity(0.9),
             child: Column(
               children: [
                 _selector(),
@@ -131,6 +140,29 @@ class _HomePageState extends State<HomePage> {
           StreamBuilder<QuerySnapshot>(
             stream: _query,
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> data) {
+              if (data.hasError) {
+                //TODO: QuerySnapshot handling error
+                print(
+                    'ERROR = ${data.error}'); //! only to get the link to automate Firestore indexes creation
+                showDialog<void>(
+                  context: context,
+                  barrierDismissible: false, // user must tap button!
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Error'),
+                      content: Text('${data.error}'),
+                      actions: [
+                        TextButton(
+                          child: Text('Cancel'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }
               if (data.connectionState == ConnectionState.active) {
                 if (data.data.size > 0) {
                   //!MonthWidget
@@ -179,18 +211,18 @@ class _HomePageState extends State<HomePage> {
   Widget _pageItem(String name, int position) {
     var _alignment;
     final selected = TextStyle(
-      fontSize: 20.0,
-      fontWeight: FontWeight.bold,
-      color: Theme.of(context).colorScheme.primary.withOpacity(0.8),
-    );
+        fontSize: 20.0,
+        fontWeight: FontWeight.bold,
+        // color: Theme.of(context).colorScheme.primary.withOpacity(0.8),
+        color: Theme.of(context).colorScheme.primary.withOpacity(0.9));
     final unselected = TextStyle(
-      fontSize: 20.0,
-      fontWeight: FontWeight.normal,
-      color: Theme.of(context)
-          .colorScheme
-          .primary
-          .withOpacity(0.3), //! accentColor
-    );
+        fontSize: 20.0,
+        fontWeight: FontWeight.normal,
+        color: Theme.of(context)
+            .colorScheme
+            .primary
+            .withOpacity(0.3) //! accentColor
+        );
     if (position == currentPage) {
       _alignment = Alignment.center;
     } else if (position > currentPage) {

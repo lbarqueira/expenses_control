@@ -75,7 +75,10 @@ class CategoryWidget extends StatelessWidget {
                 width: selected ? 3.0 : 1.0,
               ),
             ),
-            child: Icon(icon),
+            child: Icon(
+              icon,
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+            ),
           ),
           Text(name),
         ],
