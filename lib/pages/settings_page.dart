@@ -5,6 +5,7 @@ import 'package:expenses_control/utils/avatar.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -13,7 +14,10 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   TimeOfDay _time = TimeOfDay.now();
-  bool _activeNotifications = false;
+  //bool _activeNotifications = false;
+  bool _activeNotifications; //!new
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance(); //! New
+  String _timeNotifications; //!new
 
   void setupNotificationPlugin() async {
     await Provider.of<NotificationService>(context, listen: false)
@@ -22,11 +26,32 @@ class _SettingsPageState extends State<SettingsPage> {
         .configureLocalTimeZone();
   }
 
+//! New
+  Future<void> getPrefNotification() async {
+    await _prefs.then((SharedPreferences prefs) {
+      var activeNotifications = prefs.getBool('ActiveNotifications') ?? false;
+      var timeNotifications = prefs.getString('TimeNotifications') ?? '--:--';
+      setState(() {
+        _activeNotifications = activeNotifications;
+        _timeNotifications = timeNotifications;
+      });
+    });
+  }
+
+  Future<void> _saveToPrefs() async {
+    await _prefs.then((SharedPreferences prefs) {
+      prefs.setBool('ActiveNotifications', false);
+      prefs.setString('TimeNotifications', _timeNotifications);
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     if (!kIsWeb) {
       setupNotificationPlugin();
+      getPrefNotification(); //! New
+      print('initState_activeNotifications = $_activeNotifications');
     }
   }
 
@@ -35,13 +60,17 @@ class _SettingsPageState extends State<SettingsPage> {
     var user = Provider.of<LoginState>(context, listen: false).currentUser;
 
     Future<void> _selectTime() async {
-      final TimeOfDay newTime = await showTimePicker(
-        context: context,
-        initialTime: _time,
-      );
+      final TimeOfDay newTime =
+          await showTimePicker(context: context, initialTime: TimeOfDay.now());
       if (newTime != null) {
-        setState(() {
-          _activeNotifications = true;
+        await _prefs.then((SharedPreferences prefs) {
+          prefs.setBool('ActiveNotifications', true);
+          prefs.setString('TimeNotifications', newTime.format(context));
+          setState(() {
+            //       _activeNotifications = true;
+            _activeNotifications = true; //!new
+            _timeNotifications = newTime.format(context); //!new
+          });
           _time = newTime;
         });
       }
@@ -49,7 +78,15 @@ class _SettingsPageState extends State<SettingsPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        iconTheme: IconThemeData(
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8)),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        title: Text(
+          'Profile & Settings',
+          style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+        ),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.max,
@@ -92,22 +129,32 @@ class _SettingsPageState extends State<SettingsPage> {
           Expanded(
             child: Container(),
           ),
-          if (!kIsWeb)
+          if (!kIsWeb && _activeNotifications != null)
             Container(
               child: Center(
                 child: Consumer<NotificationService>(
                   builder: (BuildContext context, model, _) {
-                    return Column(
+                    return Row(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         ElevatedButton(
-                          onPressed: () async {
-                            await _selectTime();
-                            print('${_time.format(context)}');
-                            print('$_activeNotifications');
-                            model.scheduleDailyTenAMNotification(_time);
-                          },
+                          style: (_activeNotifications)
+                              ? ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.grey),
+                                )
+                              : null,
+                          onPressed: (!_activeNotifications)
+                              ? () async {
+                                  await _selectTime();
+                                  print('${_time.format(context)}');
+                                  print('$_activeNotifications');
+                                  model.scheduleDailyTenAMNotification(_time);
+                                }
+                              : () {},
                           child: (_activeNotifications)
-                              ? Text('Notification already active')
+                              ? Text(
+                                  'Notification active for $_timeNotifications')
                               : Text('Schedule Notification'),
                         ),
                         SizedBox(height: 8),
@@ -119,6 +166,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             onPressed: () async {
                               await model.cancelNotification();
                               print('Notification Cancelled');
+                              _saveToPrefs();
                               setState(() {
                                 _activeNotifications = false;
                               });
@@ -131,6 +179,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
             ),
+          if (!kIsWeb && _activeNotifications == null)
+            Expanded(child: Container()),
           Expanded(
             child: Container(),
           ),
@@ -149,32 +199,45 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
               onPressed: () {
-                showDialog<void>(
-                  context: context,
-                  barrierDismissible: false, // user must tap button!
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Logout'),
-                      content: Text('Are you sure you want to logout?'),
-                      actions: [
-                        TextButton(
-                          child: Text('Logout'),
-                          onPressed: () async {
-                            await Provider.of<LoginState>(context,
-                                    listen: false)
-                                .logout(context);
-                            Navigator.of(context).pop(); // pop alertdialog
-                            Navigator.of(context).pop(); // pop page
-                          },
+                showGeneralDialog(
+                  transitionBuilder: (context, a1, a2, widget) {
+                    final curvedValue =
+                        Curves.easeInOutBack.transform(a1.value) - 1.0;
+                    return Transform(
+                      transform: Matrix4.translationValues(
+                          0.0, curvedValue * 200, 0.0),
+                      child: Opacity(
+                        opacity: a1.value,
+                        child: AlertDialog(
+                          title: Text('Logout'),
+                          content: Text('Are you sure you want to logout?'),
+                          actions: [
+                            TextButton(
+                              child: Text('Logout'),
+                              onPressed: () async {
+                                await Provider.of<LoginState>(context,
+                                        listen: false)
+                                    .logout(context);
+                                Navigator.of(context).pop(); // pop alertdialog
+                                Navigator.of(context).pop(); // pop page
+                              },
+                            ),
+                            TextButton(
+                              child: Text('Cancel'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
                         ),
-                        TextButton(
-                          child: Text('Cancel'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
+                      ),
                     );
+                  },
+                  transitionDuration: Duration(milliseconds: 200),
+                  barrierDismissible: false,
+                  context: context,
+                  pageBuilder: (context, animation1, animation2) {
+                    return null;
                   },
                 );
               },

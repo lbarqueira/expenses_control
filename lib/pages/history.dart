@@ -29,8 +29,16 @@ class _HistoryPageState extends State<HistoryPage> {
         _query = _db.queryByYear(year: currentYear, userUid: user.uid);
         return Scaffold(
           appBar: AppBar(
+            iconTheme: IconThemeData(
+                color:
+                    Theme.of(context).colorScheme.onSurface.withOpacity(0.8)),
             centerTitle: true,
-            title: Text('Overview of $currentYear'),
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            title: Text(
+              'Overview of $currentYear',
+              style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+            ),
           ),
           body: SafeArea(
             child: Column(

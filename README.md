@@ -72,6 +72,11 @@ https://github.com/Gazer/como-gasto/tree/master
 - [MaikuB_flutter_local_notifications](https://github.com/MaikuB/flutter_local_notifications/blob/1fe78b9d129d674cd97cfba49734577b24c56925/flutter_local_notifications/example/lib/main.dart)
 - [Flutter Local Notification, Realtime And Scheduled Push Notification For Offline Devices](https://desiprogrammer.com/blogs/flutter-local-push-notifications)
 
+### Animations:
+- package: [animations](https://pub.dev/packages/animations)
+- [Flutter Tutorial - Page Transition - Container Transform Animation](https://www.youtube.com/watch?v=1nwuihDA8pE)
+- [How To Animate Dialogs In Flutter? Here Is Answer](https://medium.com/flutter-community/how-to-animate-dialogs-in-flutter-here-is-answer-492ea3a7262f)
+
 
 ## Important official documentation and others:
 

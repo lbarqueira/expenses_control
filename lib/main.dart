@@ -42,7 +42,7 @@ void main() async {
         ),
       );
     },
-  );
+  ).catchError((onError) => print('Error: $onError'));
 }
 
 class MyApp extends StatelessWidget {
@@ -127,7 +127,6 @@ class MyApp extends StatelessWidget {
                   },
                 );
               },
-//              '/add': (context) => AddPage(),
             },
           );
         },

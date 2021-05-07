@@ -163,7 +163,8 @@ class Graph extends StatelessWidget {
 //!          categories.keys.map((name) => categories[name] / total).toList();
       List<CostsData> perCategory = [];
       categories.forEach(
-        (k, v) => perCategory.add(CostsData(k, num.parse(v.toStringAsFixed(2)).toDouble())),
+        (k, v) => perCategory
+            .add(CostsData(k, num.parse(v.toStringAsFixed(2)).toDouble())),
       );
       return SizedBox(
         width: width * 0.95, //! nes

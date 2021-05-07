@@ -1,12 +1,15 @@
 import 'package:expenses_control/month_widget.dart';
 import 'package:expenses_control/pages/history.dart';
 import 'package:expenses_control/utils/days_in_month.dart';
+import 'package:expenses_control/utils/show_alert_dialog.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expenses_control/services/expenses_repository.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:animations/animations.dart';
 
 import '../providers/login_state.dart';
 import 'add_page.dart';
@@ -72,13 +75,7 @@ class _HomePageState extends State<HomePage> {
                   });
                 }),
                 SizedBox(width: 48.0),
-                _bottomAction(FontAwesomeIcons.history, () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => HistoryPage(),
-                    ),
-                  );
-                }),
+                HistoryBottomWidget(),
                 _bottomAction(Icons.settings, () {
                   Navigator.pushNamed(context, '/settings');
                 }),
@@ -87,20 +84,9 @@ class _HomePageState extends State<HomePage> {
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: FloatingActionButton(
-            // backgroundColor: Theme.of(context).colorScheme.secondary,
-            child: Icon(Icons.add),
-            onPressed: () {
-              //Navigator.of(context).pushNamed('/add');
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => AddPage(
-                    documentId: null,
-                    month: currentPage + 1,
-                  ),
-                ),
-              );
-            },
+          floatingActionButton: CustomFABWidget(
+            currentPage: currentPage,
+            transitionType: ContainerTransitionType.fade,
           ),
           body: _body(),
         );
@@ -144,63 +130,60 @@ class _HomePageState extends State<HomePage> {
                 //TODO: QuerySnapshot handling error
                 print(
                     'ERROR = ${data.error}'); //! only to get the link to automate Firestore indexes creation
-                showDialog<void>(
+                showAlertDialog(
                   context: context,
-                  barrierDismissible: false, // user must tap button!
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Error'),
-                      content: Text('${data.error}'),
-                      actions: [
-                        TextButton(
-                          child: Text('Cancel'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
-                  },
+                  content: data.error,
+                  title: 'Error',
+                  cancelActionText: 'Cancel',
                 );
               }
-              if (data.connectionState == ConnectionState.active) {
-                if (data.data.size > 0) {
-                  //!MonthWidget
-                  return MonthWidget(
-                    graphType: currentType,
-                    month: currentPage,
-                    days: daysInMonth(currentPage + 1),
-                    documents: data.data.docs,
-                  );
-                } else {
-                  return Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(height: height * 0.05),
-                        Container(
-                            height: height * 0.5,
-                            child: Image.asset(
-                                'assets/undraw_No_data_re_kwbl.png')),
-                        SizedBox(height: height * 0.05),
-                        Text(
-                          "No expenses this month",
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        SizedBox(height: height * 0.05),
-                      ],
+              if (data.connectionState == ConnectionState.waiting) {
+                return Expanded(
+                  child: Center(
+                    child: SizedBox(
+                      child: CircularProgressIndicator(),
+                      height: 50.0,
+                      width: 50.0,
                     ),
-                  );
-                }
-              }
-              return Expanded(
-                child: Center(
-                  child: SpinKitDoubleBounce(
-                    color: Colors.white,
-                    size: 100.0,
                   ),
-                ),
-              );
+                );
+              }
+              return (data.data.size > 0)
+                  ?
+                  //!MonthWidget
+                  MonthWidget(
+                      graphType: currentType,
+                      month: currentPage,
+                      days: daysInMonth(currentPage + 1),
+                      documents: data.data.docs,
+                    )
+                  : Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: height * 0.05),
+                          Container(
+                            // height: height * 0.5,
+                            padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                            child: kIsWeb
+                                ? SvgPicture.asset('assets/undraw_No_data.svg',
+                                    height: MediaQuery.of(context).size.height *
+                                        0.5,
+                                    alignment: Alignment.center)
+                                : SvgPicture.asset('assets/undraw_No_data.svg',
+                                    height: MediaQuery.of(context).size.height *
+                                        0.5,
+                                    alignment: Alignment.center),
+                          ),
+                          SizedBox(height: height * 0.03),
+                          Text(
+                            "No expenses this month",
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                          SizedBox(height: height * 0.05),
+                        ],
+                      ),
+                    );
             },
           ),
         ],
@@ -306,4 +289,85 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
+
+// TODO: animations
+class HistoryBottomWidget extends StatelessWidget {
+  const HistoryBottomWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Icon(FontAwesomeIcons.history),
+      ),
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => HistoryPage(),
+          ),
+        );
+      },
+    );
+  }
+}
+
+//class CustomFABWidget extends StatelessWidget {
+//  const CustomFABWidget({
+//    Key key,
+//    @required this.currentPage,
+//  }) : super(key: key);
+//
+//  final int currentPage;
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return FloatingActionButton(
+//      backgroundColor: Theme.of(context).colorScheme.secondary,
+//      child: Icon(Icons.add),
+//      onPressed: () {
+//        //Navigator.of(context).pushNamed('/add');
+//        Navigator.of(context).push(
+//          MaterialPageRoute(
+//            builder: (context) => AddPage(
+//              documentId: null,
+//              month: currentPage + 1,
+//            ),
+//          ),
+//        );
+//      },
+//    );
+//  }
+//}
+
+class CustomFABWidget extends StatelessWidget {
+  final int currentPage;
+  final ContainerTransitionType transitionType;
+
+  const CustomFABWidget({
+    Key key,
+    @required this.transitionType,
+    @required this.currentPage,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => OpenContainer(
+        transitionDuration: Duration(milliseconds: 750),
+        openBuilder: (context, _) => AddPage(
+          documentId: null,
+          month: currentPage + 1,
+        ),
+        closedShape: CircleBorder(),
+        closedColor: Theme.of(context).colorScheme.secondary,
+        closedBuilder: (context, openContainer) => FloatingActionButton(
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          onPressed: openContainer,
+          child: Icon(
+            Icons.add,
+          ),
+        ),
+      );
 }
