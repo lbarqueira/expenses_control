@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:expenses_control/providers/login_state.dart';
 import 'package:expenses_control/providers/theme_state.dart';
 import 'package:expenses_control/services/notification.dart';
@@ -199,45 +200,33 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
               onPressed: () {
-                showGeneralDialog(
-                  transitionBuilder: (context, a1, a2, widget) {
-                    final curvedValue =
-                        Curves.easeInOutBack.transform(a1.value) - 1.0;
-                    return Transform(
-                      transform: Matrix4.translationValues(
-                          0.0, curvedValue * 200, 0.0),
-                      child: Opacity(
-                        opacity: a1.value,
-                        child: AlertDialog(
-                          title: Text('Logout'),
-                          content: Text('Are you sure you want to logout?'),
-                          actions: [
-                            TextButton(
-                              child: Text('Logout'),
-                              onPressed: () async {
-                                await Provider.of<LoginState>(context,
-                                        listen: false)
-                                    .logout(context);
-                                Navigator.of(context).pop(); // pop alertdialog
-                                Navigator.of(context).pop(); // pop page
-                              },
-                            ),
-                            TextButton(
-                              child: Text('Cancel'),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                  transitionDuration: Duration(milliseconds: 200),
-                  barrierDismissible: false,
+                showModal(
                   context: context,
-                  pageBuilder: (context, animation1, animation2) {
-                    return null;
+                  configuration: FadeScaleTransitionConfiguration(
+                      barrierDismissible: false),
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Logout'),
+                      content: Text('Are you sure you want to logout?'),
+                      actions: [
+                        TextButton(
+                          child: Text('Logout'),
+                          onPressed: () async {
+                            await Provider.of<LoginState>(context,
+                                    listen: false)
+                                .logout(context);
+                            Navigator.of(context).pop(); // pop alertdialog
+                            Navigator.of(context).pop(); // pop page
+                          },
+                        ),
+                        TextButton(
+                          child: Text('Cancel'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
                   },
                 );
               },

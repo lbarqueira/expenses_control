@@ -1,9 +1,16 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
 //! https://material.io/design/color/the-color-system.html#color-theme-creation
 // ! The baseline Material color theme
 
 final ThemeData lightTheme = ThemeData.light().copyWith(
+  pageTransitionsTheme: const PageTransitionsTheme(
+    builders: <TargetPlatform, PageTransitionsBuilder>{
+      TargetPlatform.android: SharedAxisPageTransitionsBuilder(
+          transitionType: SharedAxisTransitionType.horizontal),
+    },
+  ),
   colorScheme: ColorScheme(
     // A primary color is the color displayed most frequently across your app's screens and components.
     primary: const Color(0xff6200ee), // purple 500
@@ -29,6 +36,12 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
 );
 
 final ThemeData darkTheme = ThemeData.dark().copyWith(
+  pageTransitionsTheme: const PageTransitionsTheme(
+    builders: <TargetPlatform, PageTransitionsBuilder>{
+      TargetPlatform.android: SharedAxisPageTransitionsBuilder(
+          transitionType: SharedAxisTransitionType.horizontal),
+    },
+  ),
   colorScheme: ColorScheme(
     primary: const Color(0xffbb86fc),
     primaryVariant: const Color(0xff3700B3),

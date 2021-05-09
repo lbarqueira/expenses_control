@@ -76,6 +76,7 @@ https://github.com/Gazer/como-gasto/tree/master
 - package: [animations](https://pub.dev/packages/animations)
 - [Flutter Tutorial - Page Transition - Container Transform Animation](https://www.youtube.com/watch?v=1nwuihDA8pE)
 - [How To Animate Dialogs In Flutter? Here Is Answer](https://medium.com/flutter-community/how-to-animate-dialogs-in-flutter-here-is-answer-492ea3a7262f)
+- [A Deep Dive into the Flutter Animations Package](https://verygood.ventures/blog/a-deep-dive-into-the-flutter-animations-package)
 
 
 ## Important official documentation and others:

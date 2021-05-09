@@ -355,7 +355,7 @@ class CustomFABWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OpenContainer(
-        transitionDuration: Duration(milliseconds: 750),
+        transitionDuration: Duration(milliseconds: 500),
         openBuilder: (context, _) => AddPage(
           documentId: null,
           month: currentPage + 1,

@@ -99,12 +99,8 @@ class _AddPageState extends State<AddPage> {
                 // TODO: color of the icons
                 color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
               ),
-              onPressed: () {
-                //  if (widget.month == DateTime.now().month) {
-                //    date = DateTime.now();
-                //  }
-                print('Value=$_value');
-                showDatePicker(
+              onPressed: () async {
+                await showDatePicker(
                   context: context,
                   initialDate: (widget.month == DateTime.now().month)
                       ? DateTime.now()
@@ -134,7 +130,7 @@ class _AddPageState extends State<AddPage> {
           IconButton(
             icon: Icon(
               Icons.close,
-              color: Colors.grey,
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
             ),
             onPressed: () {
               Navigator.of(context).pop();
