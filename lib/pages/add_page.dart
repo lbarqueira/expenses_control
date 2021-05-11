@@ -333,14 +333,13 @@ class _AddPageState extends State<AddPage> {
         currentItem: _category,
         categories: {
           'Shopping': Icons.shopping_cart,
-          'Alcohol': FontAwesomeIcons.beer,
-          'Fast food': FontAwesomeIcons.hamburger,
+          'Trash': FontAwesomeIcons.trashAlt,
           'Bills': FontAwesomeIcons.wallet,
-          'Gas': FontAwesomeIcons.gasPump,
           'Vehicule': FontAwesomeIcons.car,
-          'Tabacco': FontAwesomeIcons.smoking,
+          'Restaurants': FontAwesomeIcons.utensils,
           'Medical': FontAwesomeIcons.clinicMedical,
-          'Learning': FontAwesomeIcons.graduationCap,
+          'Education': FontAwesomeIcons.graduationCap,
+          'Pets': FontAwesomeIcons.paw,
         },
         onValueChanged: (newCategory) {
           setState(() {

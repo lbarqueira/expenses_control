@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.all(12.0),
                 ),
                 child: Text(
-                  'Sign-In with Google',
+                  'Continue with Google',
                 ),
                 onPressed: () {
                   Provider.of<LoginState>(context, listen: false)

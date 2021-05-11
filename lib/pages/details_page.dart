@@ -40,19 +40,23 @@ class _DetailsPageState extends State<DetailsPage> {
 
         return Scaffold(
           appBar: AppBar(
+            iconTheme: IconThemeData(
+                color:
+                    Theme.of(context).colorScheme.onSurface.withOpacity(0.8)),
             centerTitle: true,
             elevation: 0.0,
+            backgroundColor: Colors.transparent,
             title: FittedBox(
               child: RichText(
                 text: TextSpan(
                   children: [
                     TextSpan(
-                        style: TextStyle(color: Colors.white, fontSize: 18.0),
+                        style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 18.0),
                         text: '${widget.params.categoryName} expenses on '),
                     convertMonthToText(
                       widget.params.month,
                       TextStyle(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontWeight: FontWeight.bold,
                           fontSize: 18.0),
                     ),

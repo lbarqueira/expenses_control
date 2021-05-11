@@ -59,6 +59,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     var user = Provider.of<LoginState>(context, listen: false).currentUser;
+    double width = MediaQuery.of(context).size.width;
 
     Future<void> _selectTime() async {
       final TimeOfDay newTime =
@@ -75,6 +76,27 @@ class _SettingsPageState extends State<SettingsPage> {
           _time = newTime;
         });
       }
+    }
+
+    Padding _buildDivider({IconData icon}) {
+      return Padding(
+        padding: const EdgeInsets.only(right: 20.0, left: 20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Icon(icon),
+            SizedBox(
+              width: 10.0,
+            ),
+            Expanded(
+              child: Divider(
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+              ),
+            ),
+          ],
+        ),
+      );
     }
 
     return Scaffold(
@@ -108,6 +130,7 @@ class _SettingsPageState extends State<SettingsPage> {
               user.email,
             ),
           const SizedBox(height: 18),
+          _buildDivider(icon: Icons.settings),
           Padding(
             padding: EdgeInsets.only(left: 30.0, right: 30.0),
             child: Row(
@@ -127,15 +150,19 @@ class _SettingsPageState extends State<SettingsPage> {
               ],
             ),
           ),
-          Expanded(
-            child: Container(),
-          ),
+//          Expanded(
+//            child: Container(),
+//          ),
+          if (!kIsWeb && _activeNotifications != null)
+            Expanded(
+              child: _buildDivider(icon: Icons.notifications),
+            ),
           if (!kIsWeb && _activeNotifications != null)
             Container(
               child: Center(
                 child: Consumer<NotificationService>(
                   builder: (BuildContext context, model, _) {
-                    return Row(
+                    return Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         ElevatedButton(
@@ -181,21 +208,30 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
           if (!kIsWeb && _activeNotifications == null)
-            Expanded(child: Container()),
+            Expanded(
+              child: Container(),
+            ),
           Expanded(
+            flex: 3,
             child: Container(),
+          ),
+          Expanded(
+            child: _buildDivider(icon: Icons.exit_to_app),
           ),
           Container(
             height: 50.0,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-            ),
-            child: MaterialButton(
+            width: width * 0.40,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.secondary,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
+                    side: BorderSide.none),
+              ),
               child: Text(
                 "Sign Out",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontSize: 20.0,
                 ),
               ),
@@ -231,6 +267,10 @@ class _SettingsPageState extends State<SettingsPage> {
                 );
               },
             ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(),
           ),
         ],
       ),

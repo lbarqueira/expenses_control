@@ -24,7 +24,7 @@ void main() async {
   await Firebase.initializeApp();
   await SharedPreferences.getInstance().then(
     (prefs) {
-      var isDarkTheme = prefs.getBool('darkTheme') ?? true;
+      var isDarkTheme = prefs.getBool('darkTheme') ?? false;
       var isFistSeen = prefs.getBool('seen') ?? true;
       print('isDarkTheme = $isDarkTheme');
       print('isFistSeen = $isFistSeen');

@@ -17,22 +17,22 @@ class ExplanationData {
 final List<ExplanationData> data = [
   ExplanationData(
       description:
-          "Labore do ex cillum fugiat anim nulla pariatur est. Elit laboris eiusmod ex occaecat do ea officia esse culpa.",
-      title: "A Day at the Park",
-      localImageSrc: "assets/1.svg",
-      backgroundColor: Colors.orange[500]),
+          'Very easy to use, fast, and only the most-used expense categories.',
+      title: 'Easy and Fast',
+      localImageSrc: kIsWeb ? 'Group15.svg' : 'assets/Group15.svg',
+      backgroundColor: Color(0xfff0f0f0)),
   ExplanationData(
       description:
-          "Sit ullamco anim deserunt aliquip mollit id. Occaecat labore laboris magna reprehenderit sint in sunt ea.",
-      title: "Playing Fetch",
-      localImageSrc: "assets/2.svg",
-      backgroundColor: Colors.orange[700]),
+          'Month and annual data presented through Line and Pie graphics.',
+      title: 'Graphics',
+      localImageSrc: kIsWeb ? 'Group6.svg' : 'assets/Group6.svg',
+      backgroundColor: Color(0xfff0f0f0)),
   ExplanationData(
       description:
-          "Eiusmod aliqua laboris duis eiusmod ea ea commodo dolore. Ullamco nulla nostrud et officia.",
-      title: "Relaxing Walk",
-      localImageSrc: "assets/3.svg",
-      backgroundColor: Colors.green[800]),
+          'You can choose to be notified every day so you do not forget to add expenses.',
+      title: 'Notifications',
+      localImageSrc: kIsWeb ? 'Group10.svg' : 'assets/Group10.svg',
+      backgroundColor: Color(0xfff0f0f0)),
 ];
 
 class OnboardingPage extends StatefulWidget {
@@ -47,59 +47,61 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: data[_currentIndex].backgroundColor,
-      child: SafeArea(
-        child: Container(
-          padding: EdgeInsets.all(16),
-          color: data[_currentIndex].backgroundColor,
-          alignment: Alignment.center,
-          child: Column(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    Expanded(
-                      flex: 4,
-                      child: Container(
-                          alignment: Alignment.center,
-                          child: PageView(
-                              scrollDirection: Axis.horizontal,
-                              controller: _controller,
-                              onPageChanged: (value) {
-                                setState(() {
-                                  _currentIndex = value;
-                                });
-                              },
-                              children: data
-                                  .map((e) => ExplanationPage(data: e))
-                                  .toList())),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.symmetric(vertical: 24),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: List.generate(data.length,
-                                  (index) => createCircle(index: index)),
-                            ),
-                          ),
-                          BottomButtons(
-                            currentIndex: _currentIndex,
-                            dataLength: data.length,
-                            controller: _controller,
-                          )
-                        ],
+    return Material(
+      child: Container(
+        color: data[_currentIndex].backgroundColor,
+        child: SafeArea(
+          child: Container(
+            padding: EdgeInsets.all(16),
+            color: data[_currentIndex].backgroundColor,
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 4,
+                        child: Container(
+                            alignment: Alignment.center,
+                            child: PageView(
+                                scrollDirection: Axis.horizontal,
+                                controller: _controller,
+                                onPageChanged: (value) {
+                                  setState(() {
+                                    _currentIndex = value;
+                                  });
+                                },
+                                children: data
+                                    .map((e) => ExplanationPage(data: e))
+                                    .toList())),
                       ),
-                    )
-                  ],
-                ),
-              )
-            ],
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.symmetric(vertical: 24),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: List.generate(data.length,
+                                    (index) => createCircle(index: index)),
+                              ),
+                            ),
+                            BottomButtons(
+                              currentIndex: _currentIndex,
+                              dataLength: data.length,
+                              controller: _controller,
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -114,8 +116,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
       height: _currentIndex == index ? 8 : 8,
       width: _currentIndex == index ? 8 : 8,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.blueGrey),
-        color: _currentIndex == index ? Colors.blueGrey : Colors.transparent,
+        border: Border.all(color: Theme.of(context).colorScheme.primary),
+        color:
+            _currentIndex == index ? Theme.of(context).colorScheme.primary : Colors.transparent,
         borderRadius: BorderRadius.circular(4),
       ),
     );
@@ -142,16 +145,15 @@ class ExplanationPage extends StatelessWidget {
                   alignment: Alignment.center),
         ),
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                data.title,
-                style: Theme.of(context).textTheme.headline5,
-                textAlign: TextAlign.center,
-              ),
-            ],
+          child: Container(),
+        ),
+        Expanded(
+          child: Container(
+            child: Text(
+              data.title,
+              style: TextStyle(color: Colors.blueAccent, fontSize: 25.0),
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
         Expanded(
@@ -163,7 +165,7 @@ class ExplanationPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 48),
                 child: Text(
                   data.description,
-                  style: Theme.of(context).textTheme.bodyText2,
+                  style: TextStyle(color: Colors.blueAccent, fontSize: 15.0),
                   textAlign: TextAlign.center,
                 ),
               )
@@ -201,7 +203,7 @@ class BottomButtons extends StatelessWidget {
                 height: 50.0,
                 child: TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.grey[400],
+                    backgroundColor: Colors.blueGrey[700],
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100),
                         side: BorderSide.none),

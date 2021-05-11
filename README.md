@@ -6,7 +6,7 @@ A complete Flutter application.
 
 This project is based on the following tutorials:
 
-### Main Reference:
+### Main Reference - Inspired by:
 - [Ricardo Markiewicz](https://www.youtube.com/channel/UCqMwm3oGe6BhJUOrBdfnAEA)
 - [Aplicación Flutter Completa](https://www.youtube.com/playlist?list=PLntQ_VE6-lYCz2DXgVpd7yNm3opgM-mH-)
 https://github.com/Gazer/como-gasto/tree/master
@@ -47,10 +47,12 @@ https://github.com/Gazer/como-gasto/tree/master
 
 ### Splash Screen:
 - [Flutter Tutorial - Native Splash Screen & Real Splash Screen [2021] - Android & iOS](https://www.youtube.com/watch?v=8ME8Czqc-Oc)
+- [Create Splash Screen in Flutter App the Right Way in 2021](https://www.youtube.com/watch?v=JVpFNfnuOZM)
 
 
 ### App icon:
-- package: [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons)
+- [Creating Android app icon - Adobe XD](https://www.youtube.com/watch?v=rK6QhWG4C5g)
+- [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/index.html)
 
 
 ### Themes:
@@ -77,6 +79,11 @@ https://github.com/Gazer/como-gasto/tree/master
 - [Flutter Tutorial - Page Transition - Container Transform Animation](https://www.youtube.com/watch?v=1nwuihDA8pE)
 - [How To Animate Dialogs In Flutter? Here Is Answer](https://medium.com/flutter-community/how-to-animate-dialogs-in-flutter-here-is-answer-492ea3a7262f)
 - [A Deep Dive into the Flutter Animations Package](https://verygood.ventures/blog/a-deep-dive-into-the-flutter-animations-package)
+- [Page Transitions Using ThemeData in Flutter](https://medium.com/flutter-community/page-transitions-using-themedata-in-flutter-c24afadb0b5d)
+
+### SVG Images:
+- [unDraw](https://undraw.co/)
+- Edition with Adobe XD (unDraw plugin)
 
 
 ## Important official documentation and others:

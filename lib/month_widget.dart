@@ -192,14 +192,14 @@ class ListOfExpenses extends StatelessWidget {
   Widget build(BuildContext context) {
     IconData getCategoriesIcon(String key) {
       switch (key) {
-        case 'Alcohol':
+        case 'Trash':
           {
-            return FontAwesomeIcons.beer;
+            return FontAwesomeIcons.trashAlt;
           }
           break;
-        case 'Fast food':
+        case 'Restaurants':
           {
-            return FontAwesomeIcons.hamburger;
+            return FontAwesomeIcons.utensils;
           }
           break;
         case 'Bills':
@@ -207,19 +207,9 @@ class ListOfExpenses extends StatelessWidget {
             return FontAwesomeIcons.wallet;
           }
           break;
-        case 'Gas':
-          {
-            return FontAwesomeIcons.gasPump;
-          }
-          break;
         case 'Vehicule':
           {
             return FontAwesomeIcons.car;
-          }
-          break;
-        case 'Tabacco':
-          {
-            return FontAwesomeIcons.smoking;
           }
           break;
         case 'Medical':
@@ -227,9 +217,14 @@ class ListOfExpenses extends StatelessWidget {
             return FontAwesomeIcons.clinicMedical;
           }
           break;
-        case 'Learning':
+        case 'Education':
           {
             return FontAwesomeIcons.graduationCap;
+          }
+          break;
+        case 'Pets':
+          {
+            return FontAwesomeIcons.paw;
           }
           break;
         default:
