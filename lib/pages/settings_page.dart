@@ -129,15 +129,15 @@ class _SettingsPageState extends State<SettingsPage> {
             Text(
               user.email,
             ),
-          const SizedBox(height: 18),
+          const SizedBox(height: 10),
           _buildDivider(icon: Icons.settings),
           Padding(
             padding: EdgeInsets.only(left: 30.0, right: 30.0),
-            child: Row(
+            child: Row(crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Expanded(
-                  child: Text('Use dark mode?'),
+                  child: Text('Use dark mode?',style: TextStyle(fontSize: 18.0),),
                 ),
                 Consumer<ThemeNotifier>(
                   builder: (context, notifier, child) => Switch(
@@ -219,7 +219,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: _buildDivider(icon: Icons.exit_to_app),
           ),
           Container(
-            height: 50.0,
+            height: 40.0,
             width: width * 0.40,
             child: TextButton(
               style: TextButton.styleFrom(
@@ -232,7 +232,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 "Sign Out",
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 20.0,
+                  fontSize: 16.0,
                 ),
               ),
               onPressed: () {

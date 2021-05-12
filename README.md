@@ -102,3 +102,5 @@ ATENTION!!!
 
 ## Git operations:
 - [How can I delete a file from a Git repository?](https://stackoverflow.com/questions/2047465/how-can-i-delete-a-file-from-a-git-repository/2047477)
+
+## Codemagic documentation:

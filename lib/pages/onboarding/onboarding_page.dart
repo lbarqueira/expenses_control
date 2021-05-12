@@ -117,8 +117,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
       width: _currentIndex == index ? 8 : 8,
       decoration: BoxDecoration(
         border: Border.all(color: Theme.of(context).colorScheme.primary),
-        color:
-            _currentIndex == index ? Theme.of(context).colorScheme.primary : Colors.transparent,
+        color: _currentIndex == index
+            ? Theme.of(context).colorScheme.primary
+            : Colors.transparent,
         borderRadius: BorderRadius.circular(4),
       ),
     );
@@ -200,10 +201,10 @@ class BottomButtons extends StatelessWidget {
           ? [
               Container(
                 width: width * 0.40,
-                height: 50.0,
+                height: 40.0,
                 child: TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.blueGrey[700],
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100),
                         side: BorderSide.none),
@@ -214,7 +215,10 @@ class BottomButtons extends StatelessWidget {
                   child: Container(
                     child: Text(
                       "Get started",
-                      style: Theme.of(context).textTheme.bodyText1,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.0,
+                      ),
                     ),
                   ),
                 ),
@@ -228,7 +232,9 @@ class BottomButtons extends StatelessWidget {
                 },
                 child: Text(
                   "Skip",
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
               ),
               Row(
@@ -244,14 +250,14 @@ class BottomButtons extends StatelessWidget {
                     },
                     child: Text(
                       "Next",
-                      style: Theme.of(context).textTheme.bodyText1,
+                      style:TextStyle( color: Theme.of(context).colorScheme.primary),
                     ),
                   ),
                   Container(
                     alignment: Alignment.center,
                     child: Icon(
                       Icons.arrow_right_alt,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   )
                 ],

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import '../providers/login_state.dart';
 
@@ -85,16 +86,9 @@ class _LoginPageState extends State<LoginPage> {
                   return child;
                 }
               },
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                  ),
-                  padding: EdgeInsets.all(12.0),
-                ),
-                child: Text(
-                  'Continue with Google',
-                ),
+              child: GoogleSignUpButtonWidget(
+                width: width * 0.60,
+                content: 'Continue with Google',
                 onPressed: () {
                   Provider.of<LoginState>(context, listen: false)
                       .login(context);
@@ -145,5 +139,41 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
     _recognizer1.dispose();
     _recognizer2.dispose();
+  }
+}
+
+class GoogleSignUpButtonWidget extends StatelessWidget {
+  final void Function() onPressed;
+  final String content;
+  final double width;
+  const GoogleSignUpButtonWidget({
+    Key key,
+    this.onPressed,
+    this.content,
+    this.width,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50.0,
+      width: width,
+      child: TextButton.icon(
+        icon: Icon(FontAwesomeIcons.google, color: Color(0xffb00020),size: 24.0,),
+        style: TextButton.styleFrom(
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(100), side: BorderSide.none),
+        ),
+        label: Text(
+          content,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 14.0,
+          ),
+        ),
+        onPressed: onPressed,
+      ),
+    );
   }
 }
