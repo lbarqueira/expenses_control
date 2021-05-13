@@ -104,3 +104,11 @@ ATENTION!!!
 - [How can I delete a file from a Git repository?](https://stackoverflow.com/questions/2047465/how-can-i-delete-a-file-from-a-git-repository/2047477)
 
 ## Codemagic documentation:
+[Configure Firebase on Codemagic](https://medium.com/flutter-community/flutter-implementing-google-sign-in-71888bca24ed)
+[How to load Firebase config in Codemagic with environment variables [Video]](https://blog.codemagic.io/how-to-load-firebase-config-in-codemagic-with-environment-variables/)
+
+## Gradle Documentation
+[The Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#gradle_wrapper)
+I could not retrive SHA-1 by command $ ./gradlew signingReport 
+I had to upgrade the Gradle Wrapper using $ ./gradlew wrapper --gradle-version 7.0.1, however the build did not work and I had to downgrade to 6.7.1
+$ ./gradlew wrapper --gradle-version=6.7.1
