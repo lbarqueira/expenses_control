@@ -1,8 +1,9 @@
 gradle-wrapper.jar
 /.gradle
 /captures/
-/gradlew
-/gradlew.bat
+# Removed from gitignore because of Codemagic
+#/gradlew
+#/gradlew.bat
 /local.properties
 GeneratedPluginRegistrant.java
 

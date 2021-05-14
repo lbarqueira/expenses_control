@@ -112,3 +112,5 @@ ATENTION!!!
 I could not retrive SHA-1 by command $ ./gradlew signingReport 
 I had to upgrade the Gradle Wrapper using $ ./gradlew wrapper --gradle-version 7.0.1, however the build did not work and I had to downgrade to 6.7.1
 $ ./gradlew wrapper --gradle-version=6.7.1
+To see the version of gradle:
+$ ./gradlew --version
