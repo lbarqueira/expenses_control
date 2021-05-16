@@ -42,7 +42,9 @@ void main() async {
         ),
       );
     },
-  ).catchError((onError) => print('Error: $onError'));
+  ).catchError(
+    (onError) => print('Error: $onError'),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -62,7 +64,7 @@ class MyApp extends StatelessWidget {
           debugPrint('notifier.darkTheme = ${notifier.darkTheme}');
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
+            title: 'Expenses Control',
             theme: lightTheme,
             darkTheme: darkTheme,
             themeMode: notifier.darkTheme ? ThemeMode.dark : ThemeMode.light,

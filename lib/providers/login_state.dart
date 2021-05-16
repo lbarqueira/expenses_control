@@ -53,18 +53,23 @@ class LoginState with ChangeNotifier {
 
     try {
       if (!kIsWeb) {
-        await googleSignIn.signOut();
+        await googleSignIn.signOut().catchError(
+          (e) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Error signing out: ${e.code}'),
+                duration: Duration(seconds: 5),
+              ),
+            );
+          },
+        );
       }
       await _auth.signOut();
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: const Text('Error signing out. Try again'),
-          duration: const Duration(seconds: 1),
-          action: SnackBarAction(
-            label: 'ACTION',
-            onPressed: () {},
-          ),
+          duration: const Duration(seconds: 5),
         ),
       );
     }
@@ -85,18 +90,28 @@ class LoginState with ChangeNotifier {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Failed with error code: ${e.code}'),
-            duration: const Duration(seconds: 1),
-            action: SnackBarAction(
-              label: 'ACTION',
-              onPressed: () {},
-            ),
+            duration: const Duration(seconds: 5),
           ),
         );
       }
     } else {
       final GoogleSignIn googleSignIn = GoogleSignIn();
       final GoogleSignInAccount googleSignInAccount =
-          await googleSignIn.signIn();
+          await googleSignIn.signIn().catchError(
+        (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Failed due to: ${e.code}'),
+              duration: Duration(days: 365),
+              // duration: const Duration(seconds: 5),
+              action: SnackBarAction(
+                label: 'Cancel',
+                onPressed: () {},
+              ),
+            ),
+          );
+        },
+      );
 
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleAuth =
@@ -118,11 +133,7 @@ class LoginState with ChangeNotifier {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text('Failed with error code: ${e.code}'),
-                duration: const Duration(seconds: 1),
-                action: SnackBarAction(
-                  label: 'ACTION',
-                  onPressed: () {},
-                ),
+                duration: const Duration(seconds: 5),
               ),
             );
           } else if (e.code == 'invalid-credential') {
@@ -130,11 +141,7 @@ class LoginState with ChangeNotifier {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text('Failed with error code: ${e.code}'),
-                duration: const Duration(seconds: 1),
-                action: SnackBarAction(
-                  label: 'ACTION',
-                  onPressed: () {},
-                ),
+                duration: const Duration(seconds: 5),
               ),
             );
           }
@@ -143,17 +150,13 @@ class LoginState with ChangeNotifier {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Failed with error code: ${e.code}'),
-              duration: const Duration(seconds: 1),
-              action: SnackBarAction(
-                label: 'ACTION',
-                onPressed: () {},
-              ),
+              duration: const Duration(seconds: 5),
             ),
           );
         }
       }
     }
-    print('signed in ' + user.displayName);
+//    print('signed in ' + user.displayName);
     return user;
   }
 

@@ -114,3 +114,17 @@ I had to upgrade the Gradle Wrapper using $ ./gradlew wrapper --gradle-version 7
 $ ./gradlew wrapper --gradle-version=6.7.1
 To see the version of gradle:
 $ ./gradlew --version
+
+$ ./gradlew signingReport works ok!
+
+## Flutter's build modes
+
+### Debug
+During a typical development cycle, you test an app using flutter run at the command line, or by using the Run and Debug options in your IDE. By default, Flutter builds a debug version of your app.
+
+$ flutter build apk --debug
+Built build\app\outputs\flutter-apk\app-debug.apk.
+
+
+### Release
+[Build and release an Android app](https://flutter.dev/docs/deployment/android)
