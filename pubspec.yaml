@@ -42,7 +42,12 @@ dependencies:
   timezone: ^0.7.0
   flutter_native_timezone: ^1.0.10
   animations: ^2.0.0
+  flutter_native_splash: ^1.1.8+4
 
+flutter_native_splash:
+  color: "#EFE5FD"
+  image: assets/splash_512.png
+  android: true
 
 dev_dependencies:
   flutter_test:

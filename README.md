@@ -46,13 +46,15 @@ https://github.com/Gazer/como-gasto/tree/master
 
 
 ### Splash Screen:
+- package: [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)
+- command for first time or every time I do a change of color or image: $ flutter clean && flutter pub get && flutter pub run flutter_native_splash:create
 - [Flutter Tutorial - Native Splash Screen & Real Splash Screen [2021] - Android & iOS](https://www.youtube.com/watch?v=8ME8Czqc-Oc)
-- [Create Splash Screen in Flutter App the Right Way in 2021](https://www.youtube.com/watch?v=JVpFNfnuOZM)
 
 
 ### App icon:
 - [Creating Android app icon - Adobe XD](https://www.youtube.com/watch?v=rK6QhWG4C5g)
 - [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/index.html)
+- [Your First Flutter App Ep 4 - Adding App icons to Your Flutter Apps](https://youtu.be/hpQenyqxTmw)
 
 
 ### Themes:
@@ -74,12 +76,14 @@ https://github.com/Gazer/como-gasto/tree/master
 - [MaikuB_flutter_local_notifications](https://github.com/MaikuB/flutter_local_notifications/blob/1fe78b9d129d674cd97cfba49734577b24c56925/flutter_local_notifications/example/lib/main.dart)
 - [Flutter Local Notification, Realtime And Scheduled Push Notification For Offline Devices](https://desiprogrammer.com/blogs/flutter-local-push-notifications)
 
+
 ### Animations:
 - package: [animations](https://pub.dev/packages/animations)
 - [Flutter Tutorial - Page Transition - Container Transform Animation](https://www.youtube.com/watch?v=1nwuihDA8pE)
 - [How To Animate Dialogs In Flutter? Here Is Answer](https://medium.com/flutter-community/how-to-animate-dialogs-in-flutter-here-is-answer-492ea3a7262f)
 - [A Deep Dive into the Flutter Animations Package](https://verygood.ventures/blog/a-deep-dive-into-the-flutter-animations-package)
 - [Page Transitions Using ThemeData in Flutter](https://medium.com/flutter-community/page-transitions-using-themedata-in-flutter-c24afadb0b5d)
+
 
 ### SVG Images:
 - [unDraw](https://undraw.co/)

@@ -60,8 +60,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 Expanded(
                   child: Column(
                     children: [
+                      Expanded(flex:1,child: Container(),),
                       Expanded(
-                        flex: 3,
+                        flex: 6,
                         child: Container(
                             alignment: Alignment.center,
                             child: PageView(
@@ -76,6 +77,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                     .map((e) => ExplanationPage(data: e))
                                     .toList())),
                       ),
+                      Expanded(child: Container()),
                       Expanded(
                         flex: 1,
                         child: Column(
@@ -139,7 +141,7 @@ class ExplanationPage extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 8, bottom: 4),
+ //         margin: EdgeInsets.only(top: 16, bottom: 4),
           child: kIsWeb
               ? SvgPicture.asset(data.localImageSrc,
                   height: MediaQuery.of(context).size.height * 0.33,
@@ -165,7 +167,7 @@ class ExplanationPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 48),
             child: Text(
               data.description,
-              style: TextStyle(color: Colors.blueAccent, fontSize: 24.0),
+              style: TextStyle(color: Colors.blueAccent, fontSize: 20.0),
               textAlign: TextAlign.center,
             ),
           ),

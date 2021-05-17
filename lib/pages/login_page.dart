@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
           Text(
             'Expense Control',
             style: TextStyle(
-              fontSize: width * 0.06,
+              fontSize: width * 0.08,
             ),
           ),
           Padding(
