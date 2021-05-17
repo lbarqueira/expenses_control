@@ -104,27 +104,31 @@ ATENTION!!!
 - [How can I delete a file from a Git repository?](https://stackoverflow.com/questions/2047465/how-can-i-delete-a-file-from-a-git-repository/2047477)
 
 ## Codemagic documentation:
-[Configure Firebase on Codemagic](https://medium.com/flutter-community/flutter-implementing-google-sign-in-71888bca24ed)
-[How to load Firebase config in Codemagic with environment variables [Video]](https://blog.codemagic.io/how-to-load-firebase-config-in-codemagic-with-environment-variables/)
+- [Configure Firebase on Codemagic](https://medium.com/flutter-community/flutter-implementing-google-sign-in-71888bca24ed)
+- [How to load Firebase config in Codemagic with environment variables [Video]](https://blog.codemagic.io/how-to-load-firebase-config-in-codemagic-with-environment-variables/)
+- [Google Sign-In & Firebase Authentication Using Flutter](https://blog.codemagic.io/firebase-authentication-google-sign-in-using-flutter/)
+
 
 ## Gradle Documentation
 [The Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#gradle_wrapper)
-I could not retrive SHA-1 by command $ ./gradlew signingReport 
-I had to upgrade the Gradle Wrapper using $ ./gradlew wrapper --gradle-version 7.0.1, however the build did not work and I had to downgrade to 6.7.1
-$ ./gradlew wrapper --gradle-version=6.7.1
-To see the version of gradle:
-$ ./gradlew --version
+I could not retrive SHA-1 by command $ ./gradlew signingReport  
+I had to upgrade the Gradle Wrapper using $ ./gradlew wrapper --gradle-version 7.0.1, however the build did not work and I had to downgrade to 6.7.1  
+$ ./gradlew wrapper --gradle-version=6.7.1  
+To see the version of gradle:  
+$ ./gradlew --version  
 
-$ ./gradlew signingReport works ok!
+$ ./gradlew signingReport works ok!  
+
 
 ## Flutter's build modes
 
 ### Debug
 During a typical development cycle, you test an app using flutter run at the command line, or by using the Run and Debug options in your IDE. By default, Flutter builds a debug version of your app.
 
-$ flutter build apk --debug
+$ flutter build apk --debug  
 Built build\app\outputs\flutter-apk\app-debug.apk.
 
 
 ### Release
-[Build and release an Android app](https://flutter.dev/docs/deployment/android)
+- [Build and release an Android app](https://flutter.dev/docs/deployment/android)
+- [Continuous Integration & Delivery (CI/CD) for Android](https://blog.codemagic.io/native-android-getting-started-guide-with-codemagic-cicd/#setting-up-your-android-project-for-a-release-build)

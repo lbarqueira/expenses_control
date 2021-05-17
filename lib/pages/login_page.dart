@@ -67,12 +67,14 @@ class _LoginPageState extends State<LoginPage> {
           ),
           Padding(
             padding: const EdgeInsets.all(32.0),
-            child: Image.asset('assets/login_background.png'),
+            child: Image.asset('assets/login_background.png',
+                height: MediaQuery.of(context).size.height * 0.33,
+                alignment: Alignment.center),
           ),
-          Text(
-            'My personal finance overview',
-            style: Theme.of(context).textTheme.caption,
-          ),
+//          Text(
+//            'My personal finance overview',
+//            style: Theme.of(context).textTheme.caption,
+//          ),
           Expanded(
             flex: 1,
             child: Container(),
@@ -159,7 +161,11 @@ class GoogleSignUpButtonWidget extends StatelessWidget {
       height: 50.0,
       width: width,
       child: TextButton.icon(
-        icon: Icon(FontAwesomeIcons.google, color: Color(0xffb00020),size: 24.0,),
+        icon: Icon(
+          FontAwesomeIcons.google,
+          color: Color(0xffb00020),
+          size: 24.0,
+        ),
         style: TextButton.styleFrom(
           backgroundColor: Theme.of(context).colorScheme.secondary,
           shape: RoundedRectangleBorder(

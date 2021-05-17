@@ -18,19 +18,19 @@ final List<ExplanationData> data = [
   ExplanationData(
       description:
           'Very easy to use, fast, and only the most-used expense categories.',
-      title: 'Easy and Fast',
+      title: 'Easy to Use',
       localImageSrc: kIsWeb ? 'Group15.svg' : 'assets/Group15.svg',
       backgroundColor: Color(0xfff0f0f0)),
   ExplanationData(
       description:
-          'Month and annual data presented through Line and Pie graphics.',
-      title: 'Graphics',
+          'Month and annual data presented through Line and Pie Charts.',
+      title: 'Easy to Visualize',
       localImageSrc: kIsWeb ? 'Group6.svg' : 'assets/Group6.svg',
       backgroundColor: Color(0xfff0f0f0)),
   ExplanationData(
       description:
-          'You can choose to be notified every day so you do not forget to add expenses.',
-      title: 'Notifications',
+          'Choose to be notified every day so you do not forget to add expenses.',
+      title: 'Easy to Remember',
       localImageSrc: kIsWeb ? 'Group10.svg' : 'assets/Group10.svg',
       backgroundColor: Color(0xfff0f0f0)),
 ];
@@ -61,7 +61,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   child: Column(
                     children: [
                       Expanded(
-                        flex: 4,
+                        flex: 3,
                         child: Container(
                             alignment: Alignment.center,
                             child: PageView(
@@ -81,12 +81,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              margin: const EdgeInsets.symmetric(vertical: 24),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: List.generate(data.length,
-                                    (index) => createCircle(index: index)),
+                            Expanded(
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.symmetric(vertical: 24),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: List.generate(data.length,
+                                      (index) => createCircle(index: index)),
+                                ),
                               ),
                             ),
                             BottomButtons(
@@ -136,7 +139,7 @@ class ExplanationPage extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 24, bottom: 16),
+          margin: EdgeInsets.only(top: 8, bottom: 4),
           child: kIsWeb
               ? SvgPicture.asset(data.localImageSrc,
                   height: MediaQuery.of(context).size.height * 0.33,
@@ -152,25 +155,19 @@ class ExplanationPage extends StatelessWidget {
           child: Container(
             child: Text(
               data.title,
-              style: TextStyle(color: Colors.blueAccent, fontSize: 25.0),
+              style: TextStyle(color: Colors.blueAccent, fontSize: 32.0),
               textAlign: TextAlign.center,
             ),
           ),
         ),
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 48),
-                child: Text(
-                  data.description,
-                  style: TextStyle(color: Colors.blueAccent, fontSize: 15.0),
-                  textAlign: TextAlign.center,
-                ),
-              )
-            ],
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 48),
+            child: Text(
+              data.description,
+              style: TextStyle(color: Colors.blueAccent, fontSize: 24.0),
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
       ],
@@ -200,7 +197,7 @@ class BottomButtons extends StatelessWidget {
       children: currentIndex == dataLength - 1
           ? [
               Container(
-                width: width * 0.40,
+                width: width * 0.50,
                 height: 40.0,
                 child: TextButton(
                   style: TextButton.styleFrom(
@@ -250,7 +247,8 @@ class BottomButtons extends StatelessWidget {
                     },
                     child: Text(
                       "Next",
-                      style:TextStyle( color: Theme.of(context).colorScheme.primary),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary),
                     ),
                   ),
                   Container(
