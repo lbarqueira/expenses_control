@@ -53,8 +53,13 @@ https://github.com/Gazer/como-gasto/tree/master
 
 ### App icon:
 - [Creating Android app icon - Adobe XD](https://www.youtube.com/watch?v=rK6QhWG4C5g)
-- [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/index.html)
 - [Your First Flutter App Ep 4 - Adding App icons to Your Flutter Apps](https://youtu.be/hpQenyqxTmw)
+- [Launcher icons are generated too small because of margin](https://github.com/romannurik/AndroidAssetStudio/issues/73)
+- [Android Asset Studio](https://androidovshchik.github.io/AndroidAssetStudio/) with padding of 10% and background color equal to background color of App Icon
+
+
+### Change App Name:
+- [Change App Display Name - Flutter (Android & IOS)](https://www.youtube.com/watch?v=kzQsHzr-gjA)
 
 
 ### Themes:
