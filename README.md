@@ -139,5 +139,14 @@ Built build\app\outputs\flutter-apk\app-debug.apk.
 
 
 ### Release
+- [Flutter - Build and Release an Android App | App Signing](https://www.youtube.com/watch?v=g1fByAsqQRk)
 - [Build and release an Android app](https://flutter.dev/docs/deployment/android)
+- [Signing the app](https://flutter.dev/docs/deployment/android#signing-the-app)  
+    - Create an upload keystore:
+  ```$ keytool -genkey -v -keystore c:/30daysofflutter/upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload```  
+    - Reference the keystore from the app - create (project)/android/key.properties   
+    - Configure signing in gradle - Configure gradle to use your upload key when building your app in release mode by editing the (project)/android/app/build.gradle file
+
+
 - [Continuous Integration & Delivery (CI/CD) for Android](https://blog.codemagic.io/native-android-getting-started-guide-with-codemagic-cicd/#setting-up-your-android-project-for-a-release-build)
+
