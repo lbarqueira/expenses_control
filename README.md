@@ -1,3 +1,5 @@
+[![Codemagic build status](https://api.codemagic.io/apps/609ad6500a4b8b25a86253c5/609ad6500a4b8b25a86253c4/status_badge.svg)](https://codemagic.io/apps/609ad6500a4b8b25a86253c5/609ad6500a4b8b25a86253c4/latest_build)
+
 # expenses_control
 
 A complete Flutter application.
@@ -154,6 +156,7 @@ Built build\app\outputs\flutter-apk\app-debug.apk.
     - $ flutter build apk
     - $ flutter install (with device USB connected)
 
-- Now with Codemagic: NOT WORKING TILL NOW
+- Now with Codemagic: PASSED
   - [Android code signing - How to set up Android code signing in the Flutter workflow editor](https://docs.codemagic.io/code-signing/android-code-signing/)
+  - [Option 1. Configure signing following Flutter’s documentation](https://docs.codemagic.io/code-signing/android-code-signing/#option-1-configure-signing-following-flutters-documentation)
 
