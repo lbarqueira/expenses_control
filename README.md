@@ -147,13 +147,13 @@ Built build\app\outputs\flutter-apk\app-debug.apk.
     - Reference the keystore from the app - create (project)/android/key.properties   
     - Configure signing in gradle - Configure gradle to use your upload key when building your app in release mode by editing the (project)/android/app/build.gradle file
 
-  $ ./gradlew signingReport - to get the release SHA-1 and SHA256 - include the two in Firebase (/android directory)
-  $ cd .. (project directory)
-  $ flutter clean
-  $ flutter pub get
-  $ flutter build apk
-  $ flutter install (with device USB connected)
+    - $ ./gradlew signingReport - to get the release SHA-1 and SHA256 - include the two in Firebase (/android directory)
+    - $ cd .. (project directory)
+    - $ flutter clean
+    - $ flutter pub get
+    - $ flutter build apk
+    - $ flutter install (with device USB connected)
 
-- Codemagic: NOT WORKING TILL NOW
+- Now with Codemagic: NOT WORKING TILL NOW
   - [Android code signing - How to set up Android code signing in the Flutter workflow editor](https://docs.codemagic.io/code-signing/android-code-signing/)
 
