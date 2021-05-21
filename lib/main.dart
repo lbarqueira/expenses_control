@@ -1,6 +1,6 @@
 import 'package:expenses_control/providers/login_state.dart';
 import 'package:flutter/material.dart';
-import 'package:expenses_control/pages/home_page.dart';
+import 'package:expenses_control/pages/homepage/home_page.dart';
 import 'package:expenses_control/pages/login_page.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';

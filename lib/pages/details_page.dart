@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/login_state.dart';
-import 'add_page.dart';
+import 'addpage/add_page.dart';
 
 class DetailsParams {
   final String categoryName;

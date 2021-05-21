@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import '../category_selection_widget.dart';
+import 'category_selection_widget.dart';
 import 'package:expenses_control/services/expenses_repository.dart';
 
-import '../providers/login_state.dart';
+import '../../providers/login_state.dart';
 
 class AddPage extends StatefulWidget {
   final String documentId;
@@ -96,7 +96,6 @@ class _AddPageState extends State<AddPage> {
             IconButton(
               icon: Icon(
                 FontAwesomeIcons.calendarAlt,
-                // TODO: color of the icons
                 color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
               ),
               onPressed: () async {

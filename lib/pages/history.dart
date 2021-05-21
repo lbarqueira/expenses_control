@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
-import '../graph_widget.dart';
-import '../month_widget.dart';
+import '../utils/graph_widget.dart';
+import 'homepage/month_widget.dart';
 
 class HistoryPage extends StatefulWidget {
   HistoryPage({Key key}) : super(key: key);

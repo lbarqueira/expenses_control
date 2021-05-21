@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'graph_widget.dart';
+import '../../utils/graph_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'pages/details_page.dart';
+import '../details_page.dart';
 
 enum GraphType {
   LINES,

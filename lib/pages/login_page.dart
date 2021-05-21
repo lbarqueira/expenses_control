@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -10,9 +9,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TapGestureRecognizer _recognizer1;
-  TapGestureRecognizer _recognizer2;
-
   void showHelp(String s) {
     showDialog(
       context: context,
@@ -31,25 +27,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-
-    _recognizer1 = TapGestureRecognizer()
-      ..onTap = () {
-        showHelp(
-            'Terms of Service: ...... is provided AS IS and has no current warranty on how the'
-            ' data and uptime is managed. The final terms will be released when the final version of the app'
-            ' will be released.');
-      };
-    _recognizer2 = TapGestureRecognizer()
-      ..onTap = () {
-        showHelp(
-            'Privacy Policy: .......All your data is saved anonymously on Firebase Firestore database and will be remain that way.'
-            ' no other users will have access to it.');
-      };
-  }
-
-  @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -65,16 +42,16 @@ class _LoginPageState extends State<LoginPage> {
               fontSize: width * 0.08,
             ),
           ),
+          Expanded(
+            flex: 1,
+            child: Container(),
+          ),
           Padding(
             padding: const EdgeInsets.all(32.0),
             child: Image.asset('assets/login_background.png',
                 height: MediaQuery.of(context).size.height * 0.33,
                 alignment: Alignment.center),
           ),
-//          Text(
-//            'My personal finance overview',
-//            style: Theme.of(context).textTheme.caption,
-//          ),
           Expanded(
             flex: 1,
             child: Container(),
@@ -102,45 +79,9 @@ class _LoginPageState extends State<LoginPage> {
             flex: 1,
             child: Container(),
           ),
-          Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                style: Theme.of(context).textTheme.bodyText2,
-                text: 'To use this app you need to agree to our ',
-                children: [
-                  TextSpan(
-                    text: 'Terms of Service',
-                    recognizer: _recognizer1,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText2
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  TextSpan(text: ' and '),
-                  TextSpan(
-                    text: 'Privacy Policy',
-                    recognizer: _recognizer2,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText2
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-          )
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _recognizer1.dispose();
-    _recognizer2.dispose();
   }
 }
 

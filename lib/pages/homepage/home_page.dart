@@ -1,4 +1,4 @@
-import 'package:expenses_control/month_widget.dart';
+import 'package:expenses_control/pages/homepage/month_widget.dart';
 import 'package:expenses_control/pages/history.dart';
 import 'package:expenses_control/utils/days_in_month.dart';
 import 'package:expenses_control/utils/show_alert_dialog.dart';
@@ -11,8 +11,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animations/animations.dart';
 
-import '../providers/login_state.dart';
-import 'add_page.dart';
+import '../../providers/login_state.dart';
+import '../addpage/add_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -291,7 +291,6 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// TODO: animations
 class HistoryBottomWidget extends StatelessWidget {
   const HistoryBottomWidget({
     Key key,
@@ -314,34 +313,6 @@ class HistoryBottomWidget extends StatelessWidget {
     );
   }
 }
-
-//class CustomFABWidget extends StatelessWidget {
-//  const CustomFABWidget({
-//    Key key,
-//    @required this.currentPage,
-//  }) : super(key: key);
-//
-//  final int currentPage;
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return FloatingActionButton(
-//      backgroundColor: Theme.of(context).colorScheme.secondary,
-//      child: Icon(Icons.add),
-//      onPressed: () {
-//        //Navigator.of(context).pushNamed('/add');
-//        Navigator.of(context).push(
-//          MaterialPageRoute(
-//            builder: (context) => AddPage(
-//              documentId: null,
-//              month: currentPage + 1,
-//            ),
-//          ),
-//        );
-//      },
-//    );
-//  }
-//}
 
 class CustomFABWidget extends StatelessWidget {
   final int currentPage;
