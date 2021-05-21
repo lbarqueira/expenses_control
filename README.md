@@ -160,3 +160,5 @@ Built build\app\outputs\flutter-apk\app-debug.apk.
   - [Android code signing - How to set up Android code signing in the Flutter workflow editor](https://docs.codemagic.io/code-signing/android-code-signing/)
   - [Option 1. Configure signing following Flutter’s documentation](https://docs.codemagic.io/code-signing/android-code-signing/#option-1-configure-signing-following-flutters-documentation)
 
+### Google Play Store
+

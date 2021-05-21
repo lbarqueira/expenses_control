@@ -17,7 +17,7 @@ class ExplanationData {
 final List<ExplanationData> data = [
   ExplanationData(
       description:
-          'Very easy to use, fast, and only the most-used expense categories.',
+          'Easy to use, fast, and only the most-used expense categories.',
       title: 'Easy to Use',
       localImageSrc: kIsWeb ? 'Group15.svg' : 'assets/Group15.svg',
       backgroundColor: Color(0xfff0f0f0)),
@@ -60,9 +60,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 Expanded(
                   child: Column(
                     children: [
-                      Expanded(flex:1,child: Container(),),
                       Expanded(
-                        flex: 6,
+                        flex: 1,
+                        child: Container(),
+                      ),
+                      Expanded(
+                        flex: 7,
                         child: Container(
                             alignment: Alignment.center,
                             child: PageView(
@@ -79,21 +82,21 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       ),
                       Expanded(child: Container()),
                       Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(vertical: 24),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: List.generate(data.length,
+                                (index) => createCircle(index: index)),
+                          ),
+                        ),
+                      ),
+                      Expanded(child: Container()),
+                      Expanded(
                         flex: 1,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(
-                              child: Container(
-                                margin:
-                                    const EdgeInsets.symmetric(vertical: 24),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: List.generate(data.length,
-                                      (index) => createCircle(index: index)),
-                                ),
-                              ),
-                            ),
                             BottomButtons(
                               currentIndex: _currentIndex,
                               dataLength: data.length,
@@ -101,7 +104,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             )
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 )
@@ -141,7 +144,7 @@ class ExplanationPage extends StatelessWidget {
     return Column(
       children: [
         Container(
- //         margin: EdgeInsets.only(top: 16, bottom: 4),
+          //         margin: EdgeInsets.only(top: 16, bottom: 4),
           child: kIsWeb
               ? SvgPicture.asset(data.localImageSrc,
                   height: MediaQuery.of(context).size.height * 0.33,
@@ -157,17 +160,21 @@ class ExplanationPage extends StatelessWidget {
           child: Container(
             child: Text(
               data.title,
-              style: TextStyle(color: Colors.blueAccent, fontSize: 32.0),
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.primaryVariant,
+                  fontSize: 32.0),
               textAlign: TextAlign.center,
             ),
           ),
         ),
         Expanded(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 48),
+            padding: EdgeInsets.symmetric(horizontal: 32),
             child: Text(
               data.description,
-              style: TextStyle(color: Colors.blueAccent, fontSize: 20.0),
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.primaryVariant,
+                  fontSize: 16.0),
               textAlign: TextAlign.center,
             ),
           ),
