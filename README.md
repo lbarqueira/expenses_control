@@ -159,6 +159,7 @@ Built build\app\outputs\flutter-apk\app-debug.apk.
 - Now with Codemagic: PASSED
   - [Android code signing - How to set up Android code signing in the Flutter workflow editor](https://docs.codemagic.io/code-signing/android-code-signing/)
   - [Option 1. Configure signing following Flutter’s documentation](https://docs.codemagic.io/code-signing/android-code-signing/#option-1-configure-signing-following-flutters-documentation)
+  - [Incrementing app version using environment variables](https://docs.codemagic.io/building/build-versioning/#incrementing-app-version-using-environment-variables)
 
 ### Google Play Store
 Next steps ...
