@@ -16,8 +16,7 @@ class ExplanationData {
 
 final List<ExplanationData> data = [
   ExplanationData(
-      description:
-          'Easy to use, fast, and only the most-used expense categories.',
+      description: 'Easy to use, only the most-used expense categories.',
       title: 'Easy to Use',
       localImageSrc: kIsWeb ? 'Group15.svg' : 'assets/Group15.svg',
       backgroundColor: Color(0xfff0f0f0)),
@@ -80,10 +79,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                     .map((e) => ExplanationPage(data: e))
                                     .toList())),
                       ),
-                      Expanded(child: Container()),
                       Expanded(
+                        flex: 1,
                         child: Container(
-                          margin: const EdgeInsets.symmetric(vertical: 24),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: List.generate(data.length,
@@ -91,7 +89,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           ),
                         ),
                       ),
-                      Expanded(child: Container()),
+                      Expanded(
+                        child: Container(),
+                      ),
                       Expanded(
                         flex: 1,
                         child: Column(
@@ -144,7 +144,6 @@ class ExplanationPage extends StatelessWidget {
     return Column(
       children: [
         Container(
-          //         margin: EdgeInsets.only(top: 16, bottom: 4),
           child: kIsWeb
               ? SvgPicture.asset(data.localImageSrc,
                   height: MediaQuery.of(context).size.height * 0.33,
@@ -234,7 +233,6 @@ class BottomButtons extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   stateOnboarding.changeOnboarding();
-                  /*...*/
                 },
                 child: Text(
                   "Skip",
