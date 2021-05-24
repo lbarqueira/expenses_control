@@ -140,7 +140,7 @@ $ flutter build apk --debug
 Built build\app\outputs\flutter-apk\app-debug.apk.
 
 
-### Release
+### Release - create an app-release.aab
 - [Flutter - Build and Release an Android App | App Signing](https://www.youtube.com/watch?v=g1fByAsqQRk)
 - [Build and release an Android app](https://flutter.dev/docs/deployment/android)
 - [Signing the app](https://flutter.dev/docs/deployment/android#signing-the-app)  
@@ -161,5 +161,26 @@ Built build\app\outputs\flutter-apk\app-debug.apk.
   - [Option 1. Configure signing following Flutter’s documentation](https://docs.codemagic.io/code-signing/android-code-signing/#option-1-configure-signing-following-flutters-documentation)
   - [Incrementing app version using environment variables](https://docs.codemagic.io/building/build-versioning/#incrementing-app-version-using-environment-variables)
 
-### Google Play Store
-Next steps ...
+
+### Google Play Store Publishing (First time publishing - MANUALLY)
+
+Until now, Codemagic CI/CD helped to generate __app-release.aab__ for play store publishing. The publishing feature of codemagic into Play Store has not been used so far. Note that, you have to launch manually at least one time at the play store, until you are able to automate the publishing process at Google play store with Codemagic.     
+- __App Icon__: I have used [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/index.html), Launcher Icon Generator to get hi-res 512x512 png to upload to Google Play Store (Interesting to note that contraire to the other [Android Asset Studio](https://androidovshchik.github.io/AndroidAssetStudio/), this does not creates a shadow on the web image)
+- __Android Feature Graphic__: Used Figma to create a 1024x500 png for Android Feature Graphic to upload to Google Play Store
+- __Screenshots__: Screenshots obtained through sreenshoots of the app on a real android phone.
+- __Title, Short description, Full description__: Prepare earlier.
+
+Two important videos to follow along:
+- [How to Publish an Android App to Google Play 2021 | New Play Console](https://www.youtube.com/watch?v=5GHT4QtotE4)
+- [Deploying Flutter App To Playstore](https://www.youtube.com/watch?v=NFTaWkUtD34)
+
+
+### Modifications to the app, but in a new github branch  - the dev branch (TODO!!!)
+[5 Steps for Code Changes Only on Git Branch and Merge to Master Once Done](https://www.thegeekstuff.com/2019/03/git-create-dev-branch-and-merge/)  
+Once you are done with your development work on the “dev” branch, and validated your changes, you may want to merge the changes to the master branch. Merge Dev Branch to Master Branch
+
+
+### Returning to Codemagic CI/CD to automate publishing at Google play store (TODO!!!)
+Returning to Codemagic CI/CD:  (to automate the publishing at Google play store after first publishing previously done)
+- [Deploy a Flutter app to Google Play using the Flutter workflow editor](https://docs.codemagic.io/publishing/publishing-to-google-play/)
+- [Flutter CI/CD with Codemagic](https://www.youtube.com/watch?v=-09fSb2tb5U)
