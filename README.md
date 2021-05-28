@@ -175,6 +175,14 @@ Two important videos to follow along:
 - [Deploying Flutter App To Playstore](https://www.youtube.com/watch?v=NFTaWkUtD34)
 
 
+### Very Important
+- After 4 days the app is published at Google Play Store;  
+- Google Sign-In didn`t work;  
+- I followed this stackoverflow: [flutter google sign in not working in release when downloading from play store](https://stackoverflow.com/questions/64933084/flutter-google-sign-in-not-working-in-release-when-downloading-from-play-store)  
+- SHA-1 certificate fingerprint obtained at Google Play Console at Setup / App Integrity. Add SHA-1 to Firebase.  
+
+
+### NEXT STEPS...
 ### Modifications to the app, but in a new github branch  - the dev branch (TODO!!!)
 [5 Steps for Code Changes Only on Git Branch and Merge to Master Once Done](https://www.thegeekstuff.com/2019/03/git-create-dev-branch-and-merge/)  
 Once you are done with your development work on the “dev” branch, and validated your changes, you may want to merge the changes to the master branch. Merge Dev Branch to Master Branch
